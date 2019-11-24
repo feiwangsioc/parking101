@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-   root 'welcome#index'
+   
+   
+    resources :parkings
+   root "parkings#new"
 
 end
