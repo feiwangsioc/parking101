@@ -1,6 +1,6 @@
 class Parking < ApplicationRecord
   
-  # validates_presence_of :parking_type, :plate, :start_at
+   validates_presence_of :parking_type, :plate, :start_at
    validates_inclusion_of :parking_type, :in => ["guest", "short-term", "long-term"]
    belongs_to :user, :optional => true
    

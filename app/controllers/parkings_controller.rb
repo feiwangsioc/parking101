@@ -13,9 +13,11 @@ class ParkingsController < ApplicationController
     # Step2: 新建一笔停车，纪录下开始时间
     def create
       @parking = Parking.new(:start_at => Time.now)
-      
-      # @parking.plate = "PP"
-      @parking.save
+      @parking.parking_type = params[:parking][:parking_type]
+      @parking.plate = params[:parking][:plate]
+      @parking.user = current_user
+    
+      @parking.save!
  
       redirect_to parking_path(@parking)
     end
@@ -32,7 +34,7 @@ class ParkingsController < ApplicationController
       @parking.end_at = Time.now
       @parking.calculate_amount
  
-      @parking.save
+      @parking.save!
  
       redirect_to parking_path(@parking)
     end
@@ -41,7 +43,7 @@ class ParkingsController < ApplicationController
 
      @parking = Parking.find(params[:id])
      @parking.destroy
-     flash[:alert] = " Deleted"
+     flash[:alert] = " Deleted "
      redirect_to parkings_path
 
     end 

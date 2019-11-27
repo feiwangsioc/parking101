@@ -8,7 +8,7 @@
         <td>Starting Time</td>
         <td>License Plates</td>
         <td>Parking Type</td>
-        <td>Amount</td>
+        <td>Amount $</td>
         <td>Status</td>
       </tr>
     </thead>
@@ -18,7 +18,14 @@
           <td><%= park.start_at %></td>
           <td><%= link_to(park.plate, parking_path(park)) %></td>
           <td><%= park.parking_type %></td>
-          <td><%= park.amount %></td>
+          <td>
+          <% if park.amount.to_f != 0 %>
+          <%= park.amount.to_f / 100 %>
+          <% else %>
+           Continuing
+           <% end %>
+          </td>
+          
           <td>
           
               <%= link_to("Already Paid --Delete", parking_path(park),    class: "btn btn-sm btn-default", 
