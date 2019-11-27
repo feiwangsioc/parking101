@@ -1,14 +1,21 @@
 class ParkingsController < ApplicationController
-
+   before_action :authenticate_user! 
     # Step1: 显示开始停车的表单
+    def index
+      @parkings = Parking.order("id DESC").all
+    end 
+    
+    
     def new
       @parking = Parking.new
     end
  
     # Step2: 新建一笔停车，纪录下开始时间
     def create
-      @parking = Parking.new( :parking_type => "guest", :start_at => Time.now )
-      @parking.save!
+      @parking = Parking.new(:start_at => Time.now)
+      
+      # @parking.plate = "PP"
+      @parking.save
  
       redirect_to parking_path(@parking)
     end
@@ -25,9 +32,22 @@ class ParkingsController < ApplicationController
       @parking.end_at = Time.now
       @parking.calculate_amount
  
-      @parking.save!
+      @parking.save
  
       redirect_to parking_path(@parking)
     end
+    
+    def destroy 
+
+     @parking = Parking.find(params[:id])
+     @parking.destroy
+     flash[:alert] = " Deleted"
+     redirect_to parkings_path
+
+    end 
+    # private 
+    # def parking_params
+    #   params.require(:parking).permit(:parking_type => "guest", :plate =>"" , :start_at => Time.now)
+    # end 
 
 end

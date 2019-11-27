@@ -1,9 +1,29 @@
 <h1>全栈营停车费用计算</h1>
-
+ <hr>
 <%= form_for @parking do |f| %>
+
+  Start at : <%= Time.now %>
+  <br>
   number:
   <%= f.text_field :plate %>
 
+   
+     <label>
+       <%= f.radio_button :parking_type, "guest" %> Guest 
+     </label>
+ 
+     <label>
+       <%= f.radio_button :parking_type, "short-term" %> 短期费率
+     </label>
+ 
+     <label>
+       <%= f.radio_button :parking_type, "long-term" %> 长期费率
+     </label>
+ 
   <p><%= f.submit "开始计费" %></p>
+
+
+
+ 
 
 <% end %>

@@ -1,0 +1,31 @@
+<div class="col-md-12">
+  <div class="group">
+    <%= link_to("New parking", new_parking_path, class: "btn btn-primary pull-right") %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>Starting Time</td>
+        <td>License Plates</td>
+        <td>Parking Type</td>
+        <td>Amount</td>
+        <td>Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @parkings.each do |park| %>
+        <tr>
+          <td><%= park.start_at %></td>
+          <td><%= link_to(park.plate, parking_path(park)) %></td>
+          <td><%= park.parking_type %></td>
+          <td><%= park.amount %></td>
+          <td>
+          
+              <%= link_to("Already Paid --Delete", parking_path(park),    class: "btn btn-sm btn-default", 
+                          method: :delete, data: { confirm: "Are you sure? Is it paid ? " } )%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

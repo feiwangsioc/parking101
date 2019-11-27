@@ -5,19 +5,34 @@
         </div>
 
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item">
-                    <%= link_to("登录", '#') %>
-                </li>
+            <ul class="nav navbar-nav center">
+               
+              
+                    
+                  <% if current_user %>
+                  
+                  <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
                 
+                
+                  <%= link_to('修改密码', edit_registration_path(:user)) %>
+                 
+                  <% else %>
+                 
+                  <%= link_to('注册', new_registration_path(:user)) %> |
+                  <%= link_to('登入', new_session_path(:user)) %>
+                 
+                   <% end %> 
+                 </ul>
+               <ul class="nav navbar-nav navbar-right">   
                 <li>
                 <input class="form-control mr-sm-2 navbar-right" type="search" placeholder="Search" aria-label="Search">
                 </li>
                  <li>
                 <button class="btn btn-outline-success my-2 my-sm-0 navbar-right" type="submit">Search</button>
                 </li>
+                </ul>
                 
-            </ul>
+            
 
         </div>
     </div>
