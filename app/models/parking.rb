@@ -48,7 +48,11 @@ class Parking < ApplicationRecord
   end
 
   def calculate_long_term_amount
-    # TODO
+    if duration <= 1440
+      self.amount = 2000
+    else
+      self.amount = 2000 + ((duration - 1440 ).to_f / 1440).ceil * 1000
+    end 
   end
 
 

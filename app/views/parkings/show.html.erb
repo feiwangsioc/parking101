@@ -12,12 +12,23 @@
   <p><%= link_to "A New Parking", new_parking_path %> | <%= link_to "Return", parkings_path %></p>
 
 <% else # 还没结束，显示结束按钮 %>
+<%= form_for @parking do |f| %>
 
-  <%= form_for @parking do |f| %>
-  
-    <h3>Welcome to Parking</h3>
-    
-    <p><%= f.submit "Stop Parking" %>  | <%= link_to "Return", parkings_path %> </p>
+   <div class="card text-center">
+      <div class="card-header">
+        WELCOME
+      </div>
+      <div class="card-body">
+         <%= link_to image_tag("car-plates", alt: "parking sign", size: "100x100"  ) %>
+        <h1 class="card-title"><%= @parking.plate %></h1>
+        <p class="card-text">Thank you for choosing us</p>
+        <p><%= f.submit "Stop Parking" %>  </p>
+        <a href="/" class="btn btn-primary">Return to List</a>
+      </div>
+      <div class="card-footer text-muted">
+        
+      </div>
+    </div>
 
   <% end %>
 
