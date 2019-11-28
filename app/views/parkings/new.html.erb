@@ -15,7 +15,9 @@
   
     Start at : <%= Time.now %>
     <br>
-    Plate No.:  <%= f.text_field :plate %>
+  
+    Plate No.:  <%= f.text_field :plate, placeholder: "Plate No"%>
+    
 
    
      <label>
@@ -23,11 +25,11 @@
      </label>
  
      <label>
-       <%= f.radio_button :parking_type, "short-term" %> short-term
+       <%= f.radio_button :parking_type, "short-term" %> Short-term
      </label>
  
      <label>
-       <%= f.radio_button :parking_type, "long-term" %> long-term
+       <%= f.radio_button :parking_type, "long-term" %> Long-term
      </label>
  
      <p><%= f.submit "Start to count" %> | <a id="my-click">   Price List </a>  </p>
