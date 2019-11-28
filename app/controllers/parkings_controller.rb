@@ -2,7 +2,8 @@ class ParkingsController < ApplicationController
    before_action :authenticate_user! 
     # Step1: 显示开始停车的表单
     def index
-      @parkings = Parking.order("id DESC").all
+    #  @parkings = Parking.order("id DESC").all
+      @parkings = Parking.order("id DESC").all.paginate(:page => params[:page], :per_page => 10)
     end 
     
     
