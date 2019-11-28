@@ -2,14 +2,32 @@
 
 <% if @parking.amount.present? # 已经结束，显示停车费 %>
 
-  <p>Vehicle registration plate: <%= @parking.plate %></p>
-  <p>Type <%= @parking.parking_type %></p>
-  
-  <p>From <%= @parking.start_at %> To <%= @parking.end_at %><p>
-  <p>It's <%= @parking.duration %> min</p>
-  <p>Have to pay <%= number_to_currency(@parking.amount.to_f / 100, :unit => "$") %> Dollar</p>
 
-  <p><%= link_to "A New Parking", new_parking_path %> | <%= link_to "Return", parkings_path %></p>
+  <div class="col s12 m7  text-center">
+    <h2 class="header">Vehicle registration plate: <%= @parking.plate %></h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <%= link_to image_tag("cherry-blossom.jpg", alt: "parking sign", size: "450x230"  ) %>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+            <p></p>
+            <h3>Parking Type: <%= @parking.parking_type %></h3>
+            
+            <p>From <%= @parking.start_at %> To <%= @parking.end_at %><p>
+            <p>It's <%= @parking.duration %> min</p>
+            <h4>Have to pay <%= number_to_currency(@parking.amount.to_f / 100, :unit => "$") %> Dollar</h4>
+          
+            <p><%= link_to "A New Parking", new_parking_path %> | <%= link_to "Return", parkings_path %></p>
+        </div>
+        <div class="card-action">
+          <a href="https://www.google.com/maps">This is a map</a>
+        </div>
+      </div>
+    </div>
+  </div>
+           
+           
 
 <% else # 还没结束，显示结束按钮 %>
 <%= form_for @parking do |f| %>
@@ -20,10 +38,10 @@
       </div>
       <div class="card-body">
          <%= link_to image_tag("car-plates", alt: "parking sign", size: "100x100"  ) %>
-        <h1 class="card-title"><%= @parking.plate %></h1>
+        <h1 class="card-title" > Vehicle Plate: <%=  @parking.plate %>  </h1>
         <p class="card-text">Thank you for choosing us</p>
         <p><%= f.submit "Stop Parking" %>  </p>
-        <a href="/" class="btn btn-primary">Return to List</a>
+        <a href="/parkings" class="btn btn-primary">Return to List</a>
       </div>
       <div class="card-footer text-muted">
         

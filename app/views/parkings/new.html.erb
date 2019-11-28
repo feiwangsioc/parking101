@@ -3,6 +3,15 @@
   
    <hr>
    <%= form_for @parking do |f| %>
+
+    <% if @parking.errors.any? %>
+    <ul>
+      <% @parking.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
   
     Start at : <%= Time.now %>
     <br>

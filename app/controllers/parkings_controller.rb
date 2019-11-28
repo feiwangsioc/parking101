@@ -17,9 +17,12 @@ class ParkingsController < ApplicationController
       @parking.plate = params[:parking][:plate]
       @parking.user = current_user
     
-      @parking.save!
+      if @parking.save
  
-      redirect_to parking_path(@parking)
+        redirect_to parking_path(@parking)
+      else 
+        render :new
+      end 
     end
  
     # Step3: 如果还没结束，显示结束停车的表单
