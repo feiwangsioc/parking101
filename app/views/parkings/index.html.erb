@@ -1,3 +1,16 @@
+                 
+               <ul class="nav navbar-nav navbar-center">   
+               <li>
+                <b> Find the vehicle from current page:</b>
+               </li>
+                <li>
+                <input class="form-control mr-sm-2 navbar-right" id="myInput" type="text" placeholder="Search" aria-label="Search">
+                </li>
+                <!-- <li>-->
+                <!--<button class="btn btn-outline-success my-2 my-sm-0 navbar-right" type="submit">Search</button>-->
+                <!--</li>-->
+                </ul>
+
 <div class="col-md-12">
   <div class="group">
     <%= link_to("New parking", new_parking_path, class: "btn btn-primary pull-right") %>
@@ -12,7 +25,7 @@
         <td>Status</td>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="myTable">
       <% @parkings.each do |park| %>
         <tr>
           <td><%= park.start_at %></td>
@@ -40,3 +53,33 @@
      </div>
 
 </div>
+
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
